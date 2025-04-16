@@ -28,6 +28,12 @@ function quickSort(arr) {
 app.post('/functions/quicksort', (req, res) => {
   const arr = req.body.input;
 
+  console.log("Received request body:", req.body);  // Log for debugging
+
+  if (!arr) {
+    return res.status(400).json({ error: 'Input is missing in the request body.' });
+  }
+
   if (!Array.isArray(arr)) {
     return res.status(400).json({ error: 'Input must be an array of numbers.' });
   }
@@ -77,3 +83,4 @@ app.get('/functions/quicksort', (req, res) => {
 app.listen(3000, () => {
   console.log('Server running on http://localhost:3000');
 });
+
